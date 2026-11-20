@@ -1,0 +1,63 @@
+NALOGA 2 - ULTIMATE MATLAB PRIPRAVA
+===================================
+
+V isti prazni mapi morata biti:
+  1) naloga2_ULTIMATE.m
+  2) adaptiveSimpson.m
+
+MATLAB:
+  - Nastavi Current Folder na to mapo.
+  - Zaženi naloga2_ULTIMATE (Run ali ukaz naloga2_ULTIMATE).
+  - Najprej menjaj le f, a, b in tol pod naslovom 0. PODATKI.
+  - Za hitro reševanje ugasni dodatke:
+      DEMO_LOKALNEGA_INTERVALA = false;
+      PRIMERJAVA_TOLERANC = false;
+      NARISI_GRAFA = false;
+  - Za učenje vključi primerjavo toleranc in po želji graf.
+
+SIMPS0N IN TOLERANCA
+------------------
+I1 = en Simpson na TRENUTNEM [a,b].
+I2 = vsota dveh Simpsonov na ISTEM [a,b].
+Pri adaptivnosti se a in b pri vsakem rekurzivnem klicu spremenita.
+Sprejemni pogoj iz osnutka: abs(I1-I2) <= tol*(b-a).
+Sprejeti interval vrne I2+(I2-I1)/15.
+
+KAJ IZPISATI V KVIZ
+-------------------
+Primerjaj besedilo vprasanja z imenom spremenljivke:
+  Einf    = abs(Iref - Iinf)
+  Iadapt  = adaptivni integral
+  Eadapt  = abs(Iref - Iadapt)
+  delta   = abs(I1-I2), razlika dveh Simpsonovih priblizkov
+  I_R     = Richardsonovo izboljsani zacetni priblizek
+  Ladapt  = stevilo razpolovitev od korena (prvi klic nivo 0)
+
+POMEMBNA OMEJITEV: GLOBINA
+--------------------------
+Prvotni primer je v kvizu potrdil vrednost 15, prvotna funkcija
+s konvencijo "prvi klic = globina 0" pa je izracunala 13.
+Razloga odstopanja ni mogoce potrditi samo iz opisa naloge.
+Koda zato NE dodaja +2 brez matematicne utemeljitve.
+Ce profesor poda svojo predlogo, sledi njej za natancno stevilo nivojev.
+
+ZAHTEVNEJSE VARIACIJE ZA VAJO
+-----------------------------
+1) Namesto stare funkcije nastavi f = @(x) sin(1./(x+0.02));
+2) Spremeni meje na [-1,1] in izberi gladko funkcijo f = @(x) exp(-x.^2);
+3) Primerjaj tol=1e-2, 1e-3, 1e-4, 1e-5.
+4) Izracunaj absolutno / relativno napako in faktor izboljsanja.
+5) Določi stevilo sprejetih intervalov, klicev, vrednotenj f in najglobji interval.
+6) Preveri, kako se razlikujeta I2-I1 in napaka do reference.
+7) Pri posebnem primeru f = @(x) x.^3 na [0,1] mora biti Simpson tocen (1/4).
+
+NAPAKE, NA KATERE PAZI
+----------------------
+- Za funkcijo, ki jo klices z vektorjem, uporabi .*, ./ in .^.
+- Pri I2 moras SESTETI obe polovici istega intervala.
+- V Richardsonovem popravku NE uporabljaj abs().
+- Pri rekurzivnem klicu ne prepolovi se tol; dolzina se prepolovi sama.
+- maxLevel NI enak stevilu sprejetih intervalov.
+- Ce integrand vsebuje singularnost ali ni koncen v vozliscu, ta funkcija
+  javi napako; takrat je morda potrebna transformacija ali druga metoda.
+- Dolocenih podatkov (zlasti globine) ne prevzemaj avtomatsko iz stare naloge.

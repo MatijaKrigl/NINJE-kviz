@@ -1,0 +1,35 @@
+NINDE - Tellesova transformacija + sestavljeno Simpsonovo pravilo
+==================================================================
+
+1) Razsiri ZIP v eno mapo. Vse .m datoteke naj ostanejo v tej mapi.
+2) Odpri MATLAB Current Folder na tej mapi.
+3) Po zagonu 01_PREVERJANJE.m mora pisati: VSE KONTROLE SO USPELE.
+4) Odpri 00_TELLES_INTEGRAL_KVIZ.m. Spremeni SAMO:
+       s = 1;
+       f = @(t) 1;
+       N = 5;
+       stopnja = 3;
+5) Klikni Run. Spremenljivka odgovor_3 je priblizek integrala.
+
+Kaj je avtomatsko:
+- iskanje S iz T(S)=s;
+- sestava sistema za koeficiente T (brez rocnega racuna);
+- polyder izracuna odvod T';
+- novi integrand g(u) z Jacobianom T'(u);
+- zvezna dopolnitev v u=S, g(S)=0;
+- sestavljeno Simpsonovo pravilo na N panelih.
+
+Ta paket je za standardno Tellesovo reparametrizacijo intervala [-1,1]
+in integral z jedrom log|s-t| ter regularnim f(t).
+Ne velja avtomaticno za druge oblike singularnega jedra,
+spremenjene robne pogoje ali ukrivljene domene iz 4. podvprasanja.
+
+Pri stopnji 3 veljajo T'(S)=T''(S)=0.
+Pri stopnji 5 veljajo T'(S)=T''(S)=T'''(S)=T''''(S)=0.
+
+To ni adaptivni Simpson in ne uporablja tolerance.
+
+DODATNO:
+02_DRUGACNI_POGOJI.m kaze, kako za katerikoli sistem ustreznih
+pogojev dobiti polinom in njegov odvod z A\B in polyder.
+Ni neposredna zamenjava za integral iz tretjega podvprasanja.

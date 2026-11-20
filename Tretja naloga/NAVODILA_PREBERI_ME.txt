@@ -1,0 +1,64 @@
+TELLESOVA TRANSFORMACIJA - PREPROST PAKET ZA KVIZ
+=================================================
+
+1) RAZSIRI CELOTEN ZIP V ENO MAPO.
+2) Odpri to mapo v MATLAB-u (Current Folder).
+3) Zazeni 02_PREVERI_FUNKCIJE.m (Run).
+   Izpisati mora: VSE KONTROLE SO USPELE.
+4) Za racunanje novega primera odpri 00_KVIZ_HITRA_RESITEV.m.
+   Spremeni TIP_NALOGE in ustrezne PODATKE NA VRHU, klikni RUN.
+   Spodnjega dela (IZRACUN) ni treba spreminjati.
+5) Za vajo odpri 01_VAJE_Z_RESITVAMI.m.
+   Vsaka naloga ima svoj razdelek %% in je SAMOSTOJNA.
+   Na njenem naslovu klikni Run Section.
+
+DATOTEKE:
+  00_KVIZ_HITRA_RESITEV.m  - glavna skripta: izberes tip in podatke
+  01_VAJE_Z_RESITVAMI.m   - 11 neodvisnih numeričnih primerov z resitvami
+  02_PREVERI_FUNKCIJE.m   - preizkus, ali funkcije vracajo pravilne odgovore
+  tellesPolinom.m         - ko poznas veliki S (izracuna T)
+  tellesIzs.m             - ko poznas mali s (najde S in izracuna T)
+  polinomIzPogojev.m      - ko so pogoji za polinom drugacni
+
+KAKO SE ODLOCIS ZA TIP NALOGE?
+
+TIP 1: 'Podan je S=1/2. Dolocite T(0).'
+  TIP_NALOGE=1; S_podan=0.5; z=0; stopnja=3;
+  Odgovor: 0.857142857142857
+
+TIP 2: 'Singularnost je pri s=1/2. Dolocite T(0).'
+  TIP_NALOGE=2; s_podan=0.5; z=0; stopnja=3;
+  Odgovor: 0.494593922389593
+  Skripta izpise tudi veliki S=0.181082873627752.
+
+TIP 3: 'T(-1)=-1, T(1)=1, T'(0.5)=0.2, T''(0.5)=0.'
+  TIP_NALOGE=3; stopnja=3; z=0;
+  pogoji=[-1,0,-1; 1,0,1; 0.5,1,0.2; 0.5,2,0];
+  Odgovor: 0.685714285714286.
+
+SPREMEMBA STOPNJE:
+  V TIPU 1 ali 2 smes izbrati stopnjo 3,5,7,...
+  Takrat se VELJAJO VSI pogoji T'(S)=...=T^(m-1)(S)=0.
+  Ce profesor poda drugacne pogoje, uporabi TIP 3.
+
+SPREMENJENI ROBOVI:
+  Ce je zahtevano T(-1)=0, T(1)=1, nastavi yL=0, yD=1.
+  Deluje tudi pri yL>yD, ko je preslikava padajoca (obrnjena orientacija).
+
+SPLOSNI POGOJI:
+  Vsaka vrstica pogoji je [tocka, red_odvoda, zahtevana_vrednost].
+  Red 0 pomeni T(tocka), red 1 pomeni T'(tocka), itd.
+  Za polinom stopnje <=m potrebujes m+1 NEODVISNIH pogojev.
+  Premalo ali odvisni pogoji -> resitev ni enolicna.
+  Prevec pogojev -> lahko niso zdruzljivi.
+  Splosni polinom NI samodejno primerna monotona Tellesova preslikava.
+
+TRI OZNAKE, KI JIH NE SMES ZAMENJATI:
+  s = singularna tocka v stari spremenljivki t
+  S = nova tocka, v kateri velja T(S)=s in T'(S)=0
+  z = tocka, v kateri zelimo odgovor T(z)
+
+OPOMBA: Ta paket pokriva sestavljanje polinoma T za 1. in 2.
+  podvprasanje tretje naloge in njune variacije. Za 3. in 4.
+  podvprasanje z integrali potrebujemo se Simpsonovo pravilo.
+  Vse vaje so primeri za ucenje, ne uradni profesorjevi primeri.
